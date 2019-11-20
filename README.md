@@ -1,1 +1,1 @@
-# algo-exercises
+### Excercises - algorithms and data structures
