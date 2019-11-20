@@ -96,7 +96,7 @@ void print_results(int *map, int *areas, int nrows, int ncols) {
   std::cout << '\n';
 
   std::cout << "Area of islands:\n"; 
-  for (int i=0; i<10; ++i) {
+  for (int i=0; i<n; ++i) {
     if (areas[i] > 0)
       std::cout << areas[i] << ' ';
   }
@@ -109,7 +109,7 @@ int main() {
                            1,0,1,1,1,
                            1,0,0,0,0};
 
-  int *areas1 = new int[10] {0,0,0,0,0,0,0,0,0,0};
+  int *areas1 = new int[n] {0,0,0,0,0,0,0,0,0,0};
   find_areas(map1, areas1, 4, 5);
   print_results(map1, areas1, 4, 5);
 
@@ -117,7 +117,7 @@ int main() {
                            1,0,0,1,1,
                            1,0,1,1,1,
                            1,0,0,0,0};
-  int *areas2 = new int[10] {0,0,0,0,0,0,0,0,0,0};
+  int *areas2 = new int[n] {0,0,0,0,0,0,0,0,0,0};
   find_areas(map2, areas2, 4, 5);
   print_results(map2, areas2, 4, 5);
  
@@ -126,17 +126,17 @@ int main() {
                            0,0,1,0,0,
                            1,0,0,0,1,
                            1,1,0,1,1};
-  int *areas3 = new int[10] {0,0,0,0,0,0,0,0,0,0};
+  int *areas3 = new int[n] {0,0,0,0,0,0,0,0,0,0};
   find_areas(map3, areas3, 5, 5);
   print_results(map3, areas3, 5, 5);
 
   int *map4 = new int[1] {1};
-  int *areas4 = new int[10] {0,0,0,0,0,0,0,0,0,0};
+  int *areas4 = new int[n] {0,0,0,0,0,0,0,0,0,0};
   find_areas(map4, areas4, 1, 1);
   print_results(map4, areas4, 1, 1);
   
   int *map5 = new int[1] {0};
-  int *areas5 = new int[10] {0,0,0,0,0,0,0,0,0,0};
+  int *areas5 = new int[n] {0,0,0,0,0,0,0,0,0,0};
   find_areas(map5, areas5, 1, 1);
   print_results(map5, areas5, 1, 1);
   
