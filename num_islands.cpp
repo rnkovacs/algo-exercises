@@ -11,41 +11,40 @@
  * should return array [5, 6].
  */
 
-#include <cassert>
 #include <iostream>
 #include <map>
 
 const int n = 10;
 
-#define CHECK_NEIGHBOR(X,Y,I) \
+#define GET_NEIGHBOR_LABEL(X,Y,I) \
   if ((X) >= 0 && (Y) >= 0 && (X) < nrows && (Y) < ncols) \
-    list[I] = *(labels + (X)*ncols + (Y));
+    nb_labels[I] = *(labels + (X)*ncols + (Y));
 
 
 int check_neighbors(int *labels, int x, int y, int nrows, int ncols) {
-  int list[9];
-  for (int i=0; i<9; ++i) list[i] = 0;
+  int nb_labels[9];
+  for (int i=0; i<9; ++i) nb_labels[i] = 0;
 
-  CHECK_NEIGHBOR(x-1, y-1, 0)
-  CHECK_NEIGHBOR(x-1,   y, 1)
-  CHECK_NEIGHBOR(x-1, y+1, 2)
+  GET_NEIGHBOR_LABEL(x-1, y-1, 0)
+  GET_NEIGHBOR_LABEL(x-1,   y, 1)
+  GET_NEIGHBOR_LABEL(x-1, y+1, 2)
 
-  CHECK_NEIGHBOR(  x, y-1, 3)
-  CHECK_NEIGHBOR(  x,   y, 4)
-  CHECK_NEIGHBOR(  x, y+1, 5)
+  GET_NEIGHBOR_LABEL(  x, y-1, 3)
+  GET_NEIGHBOR_LABEL(  x,   y, 4)
+  GET_NEIGHBOR_LABEL(  x, y+1, 5)
   
-  CHECK_NEIGHBOR(x+1, y-1, 6)
-  CHECK_NEIGHBOR(x+1,   y, 7)
-  CHECK_NEIGHBOR(x+1, y+1, 8)
+  GET_NEIGHBOR_LABEL(x+1, y-1, 6)
+  GET_NEIGHBOR_LABEL(x+1,   y, 7)
+  GET_NEIGHBOR_LABEL(x+1, y+1, 8)
 
   std::map<int, int> same;
 
   int lab = 0;
   for (int i=0; i<9; ++i) {
-    if (lab && list[i] > 0 && lab != list[i])
-      same.insert({list[i], lab});
-    if (!lab && list[i] > 0)
-      lab = list[i];
+    if (lab && nb_labels[i] > 0 && lab != nb_labels[i])
+      same.insert({nb_labels[i], lab});
+    if (!lab && nb_labels[i] > 0)
+      lab = nb_labels[i];
   }
 
   for (auto pair : same) {
