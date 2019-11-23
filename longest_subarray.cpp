@@ -9,7 +9,7 @@
 
 #include <iostream>
 
-int longest_subarray(int *A, int A_len, int k) {
+int longest_subarray_with_sum_k(int *A, int A_len, int k) {
   int max_len = 0;
   
   int sum = 0;
@@ -50,27 +50,27 @@ int main() {
 
   int k = 4;
   std::cout << "Length of longest subarray with sum <= " << k << ":\n"
-            << longest_subarray(a, sizeof(a)/sizeof(a[0]), k)
+            << longest_subarray_with_sum_k(a, sizeof(a)/sizeof(a[0]), k)
             << '\n';
 
   k = 100;
   std::cout << "Length of longest subarray with sum <= " << k << ":\n"
-            << longest_subarray(a, sizeof(a)/sizeof(a[0]), k)
+            << longest_subarray_with_sum_k(a, sizeof(a)/sizeof(a[0]), k)
             << '\n';
 
   k = 1;
   std::cout << "Length of longest subarray with sum <= " << k << ":\n"
-            << longest_subarray(a, sizeof(a)/sizeof(a[0]), k)
+            << longest_subarray_with_sum_k(a, sizeof(a)/sizeof(a[0]), k)
             << '\n';
 
   k = 0;
   std::cout << "Length of longest subarray with sum <= " << k << ":\n"
-            << longest_subarray(a, sizeof(a)/sizeof(a[0]), k)
+            << longest_subarray_with_sum_k(a, sizeof(a)/sizeof(a[0]), k)
             << '\n';
 
   k = -1;
   std::cout << "Length of longest subarray with sum <= " << k << ":\n"
-            << longest_subarray(a, sizeof(a)/sizeof(a[0]), k)
+            << longest_subarray_with_sum_k(a, sizeof(a)/sizeof(a[0]), k)
             << '\n';
 
   return 0;
