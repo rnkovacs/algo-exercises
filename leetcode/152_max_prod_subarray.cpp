@@ -1,3 +1,10 @@
+/* Given an integer array nums, find the contiguous subarray within an array
+ * (containing at least one number) that has the largest product.
+ *
+ * Runtime: 4 ms, faster than 89.70% of C++ online submissions.
+ * Memory usage: 9 MB, less than 92.50% of C++ online submissions.
+ */
+
 #include <iostream>
 #include <vector>
 
