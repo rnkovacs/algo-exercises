@@ -1,3 +1,10 @@
+/* Given an m x n matrix, if an element is 0, set its entire row and column
+ * to 0. Do it in-place.
+ *
+ * Runtime: 48 ms, faster than 68.37% of C++ online submissions.
+ * Memory usage: 11.3 MB, less than 100.00% of C++ online submissions.
+ */
+
 #include <iostream>
 #include <vector>
 
