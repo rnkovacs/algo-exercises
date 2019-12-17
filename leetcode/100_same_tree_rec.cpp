@@ -12,7 +12,7 @@
  *           2            2
  * Output: false
  *
- * Runtime: 4 ms, faster than 59.10% of C++ online submissions.
+ * Runtime: 0 ms, faster than 100.00% of C++ online submissions.
  * Memory usage: 9.7 MB, less than 100.00% (?) of C++ online submissions.
  */
 
