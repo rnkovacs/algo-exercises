@@ -1,7 +1,7 @@
 /* Reverse bits of a given 32-bit unsigned integer.
  *
  * Runtime: 0 ms, faster than 100% of C++ online submissions.
- * Memory usage: 8.2 MB, less than 54.17% of C++ online submissions.
+ * Memory usage: 7.2 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <iostream>

@@ -1,11 +1,14 @@
 /* Given a binary tree, determine if it is a valid binary search tree.
  *
- * Runtime: 12 ms, faster than 89.61% of C++ online submissions.
- * Memory usage: 20.4 MB, less than 97.92% of C++ online submissions.
+ * Runtime: 12 ms, faster than 90.15% of C++ online submissions.
+ * Memory usage: 19.7 MB, less than 97.92% of C++ online submissions.
  */
 
-#include <climits>
+#include <limits>
 #include <iostream>
+
+const long LONG_MIN = std::numeric_limits<long>::min();
+const long LONG_MAX = std::numeric_limits<long>::max();
 
 struct TreeNode {
   int val;
@@ -14,11 +17,15 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
-bool isValidBST(TreeNode* node, long l = LONG_MIN, long r = LONG_MAX) {
-  return !node ||
-         (node->val > l && node->val < r &&
-          isValidBST(node->left, l, node->val) &&
-          isValidBST(node->right, node->val, r));
+bool isValidBST(TreeNode *node, long lower, long upper) {
+  if (!node) return true;
+  return node->val > lower && node->val < upper &&
+         isValidBST(node->left, lower, node->val) &&
+         isValidBST(node->right, node->val, upper);
+}
+
+bool isValidBST(TreeNode* root) {
+  return isValidBST(root, LONG_MIN, LONG_MAX);
 }
 
 int main() {

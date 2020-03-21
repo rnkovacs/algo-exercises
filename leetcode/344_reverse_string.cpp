@@ -9,16 +9,9 @@
 #include <vector>
 
 void reverse_string(std::vector<char> &s) {
-    int l = 0;
-    int r = s.size() - 1;
-    char tmp;
-    while (l < r) {
-        tmp = s[r];
-        s[r] = s[l];
-        s[l] = tmp;
-        ++l;
-        --r;
-    }
+  int l = 0;
+  int r = s.size() - 1;
+  while (l < r) std::swap(s[l++], s[r--]);
 }
 
 void print(std::vector<char> &str) {

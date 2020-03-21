@@ -11,7 +11,7 @@
  *          2   2
  *        _  3 3  _
  *
- * Runtime: 0 ms (??), faster than 100.00% of C++ online submissions.
+ * Runtime: 0 ms, faster than 100.00% of C++ online submissions.
  * Memory usage: 15 MB, less than 32.20% of C++ online submissions.
  */
 

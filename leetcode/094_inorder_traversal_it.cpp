@@ -9,8 +9,8 @@
  *
  * Output: [1, 3, 2]
  *
- * Runtime: 0 ms (??), faster than 100.00% of C++ online submissions.
- * Memory usage: 9.1 MB, less than 96.00% of C++ online submissions.
+ * Runtime: 4 ms, faster than 51.49% of C++ online submissions.
+ * Memory usage: 7 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <iostream>
@@ -24,32 +24,33 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
-std::vector<int> inorder_traversal(TreeNode *root) {
-  std::vector<int> nodes;
-  if (!root)
-    return nodes;
+std::vector<int> inorderTraversal(TreeNode* root) {
+  if (!root) return {};
 
-  std::stack<TreeNode *> s;
-  s.push(root);
-
-  TreeNode *n = root->left;
-  while (n) {
-    s.push(n);
-    n = n->left;
+  std::stack<TreeNode *> st;
+  st.push(root);
+  
+  TreeNode *i = root->left;
+  while (i) {
+    st.push(i);
+    i = i->left;
   }
-
-  while (!n && !s.empty()) {
-    n = s.top();
-    nodes.push_back(n->val);
-    s.pop();
-    n = n->right;
-    while (n) {
-      s.push(n);
-      n = n->left;
+  
+  std::vector<int> v;
+  while (!st.empty()) {
+    TreeNode *n = st.top();
+    st.pop();
+    v.push_back(n->val);
+    
+    if (!n->right) continue;
+    
+    i = n->right;
+    while (i) {
+      st.push(i);
+      i = i->left;
     }
   }
-
-  return nodes;
+  return v;
 }
 
 int main() {
@@ -60,7 +61,7 @@ int main() {
   root1->right = new TreeNode(2);
   root1->right->left = new TreeNode(4);
   root1->right->right = new TreeNode(3);
-  for (int val : inorder_traversal(root1))
+  for (int val : inorderTraversal(root1))
     std::cout << val << ' ';
   std::cout << "\n\n";
 
@@ -71,7 +72,7 @@ int main() {
   root2->right = new TreeNode(2);
   root2->right->left = nullptr;
   root2->right->right = new TreeNode(3);
-  for (int val : inorder_traversal(root2))
+  for (int val : inorderTraversal(root2))
     std::cout << val << ' ';
   std::cout << "\n\n";
 }

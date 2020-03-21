@@ -8,8 +8,8 @@
  * of each house, determine the maximum amount of money you can rob tonight
  * without alerting the police.
  *
- * Runtime: 0 ms (?), faster than 100.00% of C++ online submissions.
- * Memory usage: 8.3 MB, less than 100.00% of C++ online submissions.
+ * Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+ * Memory usage: 8 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <iostream>
@@ -22,7 +22,7 @@ int rob(std::vector<int>& nums) {
   
   std::vector<int> amount (N, 0);
   amount[0] = nums[0];
-  amount[1] = nums[0] > nums[1] ? nums[0] : nums[1];
+  amount[1] = std::max(nums[0], nums[1]);
   for (int i=2; i<N; ++i) {
     amount[i] = std::max(amount[i-1], amount[i-2] + nums[i]);
   }

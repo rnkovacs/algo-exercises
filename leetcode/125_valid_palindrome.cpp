@@ -2,7 +2,7 @@
  * alphanumeric characters and ignoring cases.
  *
  * Runtime: 8 ms, faster than 85.53% of C++ online submissions.
- * Memory usage: 9.4 MB, less than 57.14% of C++ online submissions.
+ * Memory usage: 8.9 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <cctype>
@@ -15,16 +15,9 @@ bool isPalindrome(std::string s) {
   int l = 0;
   int r = len - 1;
   while (l < r) {
-    if (!std::isalnum(s[l])) l++;
-    else if (!std::isalnum(s[r])) r--;
-
-    else if (std::tolower(s[l]) != std::tolower(s[r]))
-      return false;
-
-    else {
-      l++;
-      r--;
-    }
+    if (!std::isalnum(s[l])) { ++l; continue; }
+    if (!std::isalnum(s[r])) { --r; continue; }
+    if (std::tolower(s[l++]) != std::tolower(s[r--])) return false;
   }
   
   return true;

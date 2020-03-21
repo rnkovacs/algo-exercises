@@ -7,8 +7,8 @@
  *            /  \
  *           15   7
  *
- * Runtime: 8 ms, faster than 87.88% of C++ online submissions.
- * Memory usage: 18.9 MB, less than 100.00% of C++ online submissions.
+ * Runtime: 4 ms, faster than 98.51% of C++ online submissions.
+ * Memory usage: 18.5 MB, less than 100.00% of C++ online submissions.
  */
  
 #include <iostream>
@@ -21,31 +21,27 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
-int max_depth(TreeNode* root) {
+int maxDepth(TreeNode* root) {
   if (!root) return 0;
   
-  std::stack< std::pair<TreeNode *, int> > s;
-  s.push({root, 1});
-  
-  int depth = 1;
-  int max_depth = depth;
-  
+  std::stack<std::pair<TreeNode *, int>> s;
+  s.push({ root, 1 });
+
+  int maxLevel = 1;
+
   while (!s.empty()) {
     TreeNode *n = s.top().first;
-    depth = s.top().second;
+    int level = s.top().second;
     s.pop();
     
-    if (depth > max_depth)
-      max_depth = depth;
+    if (!n->left && !n->right)
+      maxLevel = std::max(maxLevel, level);
     
-    TreeNode *l = n->left;
-    TreeNode *r = n->right;
-
-    if (r) s.push({r, depth+1});
-    if (l) s.push({l, depth+1});
+    if (n->left) s.push({ n->left, level+1 });
+    if (n->right) s.push({ n->right, level+1 });
   }
   
-  return max_depth;
+  return maxLevel;
 }
 
 int main() {
@@ -56,7 +52,7 @@ int main() {
   root1->right = new TreeNode(2);
   root1->right->left = new TreeNode(4);
   root1->right->right = new TreeNode(3);
-  std::cout << max_depth(root1) << '\n';
+  std::cout << maxDepth(root1) << '\n';
   
   TreeNode *root2 = new TreeNode(1);
   root2->left = new TreeNode(2);
@@ -65,5 +61,5 @@ int main() {
   root2->right = new TreeNode(2);
   root2->right->left = nullptr;
   root2->right->right = new TreeNode(3);
-  std::cout << max_depth(root2) << '\n';
+  std::cout << maxDepth(root2) << '\n';
 }

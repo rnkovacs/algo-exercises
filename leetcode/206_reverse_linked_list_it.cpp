@@ -1,7 +1,7 @@
 /* Reverse a singly linked list.
  *
- * Runtime: 8 ms, faster than 78.08% of C++ online submissions.
- * Memory usage: 9.2 MB, less than 93.89% of C++ online submissions.
+ * Runtime: 8 ms, faster than 94.88% of C++ online submissions.
+ * Memory usage: 8.9 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <iostream>

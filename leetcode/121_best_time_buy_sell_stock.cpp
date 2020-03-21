@@ -3,31 +3,25 @@
  * (i.e. buy one and sell one), design an algorithm to find the maximum
  * profit.
  *
- * Runtime: 4 ms, faster than 98.48% of C++ online submissions.
- * Memory usage: 9.5 MB, less than 90.83% of C++ online submissions.
+ * Runtime: 4 ms, faster than 98.20% of C++ online submissions.
+ * Memory usage: 8.6 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <iostream>
 #include <vector>
 
-int maxProfit(std::vector<int>& prices) {
-  int N = prices.size();
-  if (N < 2) return 0;
+int maxProfit(std::vector<int> &prices) {
+  if (prices.size() < 2) return 0;
 
-  int minPrice = prices[0];
-  int maxProfit = 0;
+  int buy = prices[0];
+  int profit = 0;
   
-  for (int i=1; i<N; ++i) {
-    // Price is larger than minPrice
-    if (prices[i] - minPrice > maxProfit)
-      maxProfit = prices[i] - minPrice;
-    
-    // Price is smaller than minPrice
-    else if (prices[i] < minPrice)
-      minPrice = prices[i];
+  for (int i = 1; i < prices.size(); ++i) {
+    buy = std::min(buy, prices[i]);
+    profit = std::max(profit, prices[i] - buy);
   }
   
-  return maxProfit;
+  return profit;
 }
 
 int main() {

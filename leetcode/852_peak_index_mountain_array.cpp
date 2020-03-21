@@ -1,0 +1,13 @@
+#include <iostream>
+#include <vector>
+
+int peakIndexInMountainArray(std::vector<int> &A) {
+  for (int i = 1; i < A.size() - 1; ++i) {
+    if (A[i-1] < A[i] && A[i] > A[i+1]) return i;
+  }
+  return -1;
+}
+
+int main() {
+  
+}

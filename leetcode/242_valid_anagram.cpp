@@ -1,8 +1,8 @@
 /* Given two strings s and t, write a function to determine if t is an
  * anagram of s.
  *
- * Runtime: 12 ms, faster than 82.03% of C++ online submissions.
- * Memory usage: 9.6 MB, less than 58.21% of C++ online submissions.
+ * Runtime: 4 ms, faster than 99.77% of C++ online submissions.
+ * Memory usage: 9 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <iostream>

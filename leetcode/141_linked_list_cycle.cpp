@@ -1,7 +1,7 @@
 /* Given a linked list, determine if it has a cycle in it.
  *
- * Runtime: 12 ms, faster than 74.38% of C++ online submissions.
- * Memory usage: 9.7 MB, less than 96.05% of C++ online submissions.
+ * Runtime: 12 ms, faster than 74.34% of C++ online submissions.
+ * Memory usage: 8.9 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <iostream>
@@ -13,20 +13,19 @@ struct ListNode {
 };
 
 bool hasCycle(ListNode *head) {
-  ListNode *fast = head;
-  ListNode *slow = head;
+  if (!head || !head->next || !head->next->next)
+    return false;
   
-  while (fast && slow) {
+  ListNode *slow = head;
+  ListNode *fast = head->next->next;
+  
+  while (fast && slow != fast) {
     slow = slow->next;
-    
-    if (fast->next) fast = fast->next->next;
-    else return false;
-    
-    if (fast && slow && fast == slow)
-      return true;
+    if (!fast->next) return false;
+    fast = fast->next->next;
   }
   
-  return false;
+  return fast;
 }
 
 int main() {

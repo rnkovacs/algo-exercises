@@ -3,8 +3,8 @@
  *
  * Complexity: O(log N).
  *
- * Runtime: 0 ms, faster than 100.00% of C++ online submissions.
- * Memory usage: 8.7 MB, less than 84.44% of C++ online submissions.
+ * Runtime: 4 ms, faster than 74.32% of C++ online submissions.
+ * Memory usage: 6.6 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <iostream>
@@ -12,7 +12,6 @@
 
 int findMin(std::vector<int>& nums) {
   int N = nums.size();
-  if (N == 1) return nums[0];
   
   int first = nums[0];
   int last = nums[N-1];
@@ -21,14 +20,13 @@ int findMin(std::vector<int>& nums) {
   // last < first
   int l = 0;
   int r = N - 1;
-  while (l < r) {
+  while (l <= r) {
     int m = l + (r - l) / 2;
-    if (nums[m] >= first) {
-      l = m + 1;
-    } else { // nums[m] <= last
-      r = m;
+    if (nums[m] >= first) l = m + 1;
+    else { // nums[m] <= last
+      if (nums[m - 1] > nums[m]) return nums[m];
+      r = m - 1;
     }
-    if (l == r) return nums[l];
   }
   
   return -1;

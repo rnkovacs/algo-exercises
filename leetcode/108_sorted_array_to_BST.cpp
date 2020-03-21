@@ -2,8 +2,8 @@
  * to a height-balanced BST. In a height-balanced tree the depth of the two 
  * subtrees of every node never differ by more than 1.
  *
- * Runtime: 20 ms, faster than 58.38% of C++ online submissions.
- * Memory usage: 21.1 MB, less than 94.59% of C++ online submissions.
+ * Runtime: 16 ms, faster than 99.28% of C++ online submissions.
+ * Memory usage: 24 MB, less than 24.32% of C++ online submissions.
  */
 
 #include <iostream>

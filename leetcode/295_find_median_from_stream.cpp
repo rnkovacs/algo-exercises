@@ -5,8 +5,8 @@
  *   - Add an integer number from the data stream to the data structure.
  *   - Return the median of all elements so far.
  *
- * Runtime: 144 ms, faster than 96.23% of C++ online submissions.
- * Memory usage: 42.4 MB, less than 100.00% of C++ online submissions.
+ * Runtime: 136 ms, faster than 97.67% of C++ online submissions.
+ * Memory usage: 41.6 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <iostream>
@@ -24,32 +24,24 @@ public:
       return;
     }
     
-    if (num >= lower.top())
-      higher.push(num);
-    else
-      lower.push(num);
+    if (num >= lower.top()) higher.push(num);
+    else                    lower.push(num);
 
-    int ls = lower.size();
-    int hs = higher.size();
-    
-    if (ls > hs + 1) {
+    if (lower.size() > higher.size() + 1) {
       higher.push(lower.top());
       lower.pop();
     }
-    else if (hs > ls + 1) {
+    else if (higher.size() > lower.size() + 1) {
       lower.push(higher.top());
       higher.pop();
     }
   }
     
   double findMedian() {
-    int ls = lower.size();
-    int hs = higher.size();
+    if (lower.size() == higher.size())
+      return (double) lower.top() / 2 + higher.top() / 2;
     
-    if (ls == hs)
-      return ((double)lower.top() + higher.top()) / 2;
-    
-    return (ls > hs) ? lower.top() : higher.top();
+    return (lower.size() > higher.size()) ? lower.top() : higher.top();
   }
 };
 

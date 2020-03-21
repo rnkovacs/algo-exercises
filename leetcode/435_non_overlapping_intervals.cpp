@@ -9,33 +9,35 @@
 #include <iostream>
 #include <vector>
 
-bool smallerStart(const std::vector<int> &a, const std::vector<int> &b) {
-    return a[0] < b[0];
+bool inc(const std::vector<int> &a, const std::vector<int> &b) {
+    return a[0] < b[0] || (a[0] == b[0] && a[1] < b[1]);
 }
 
 int eraseOverlapIntervals(std::vector<std::vector<int>> &intervals) {
   int N = intervals.size();
   if (N < 2) return 0;
   
-  std::sort(intervals.begin(), intervals.end(), smallerStart);
-  int toRemove = 0;
-  int last = 0; 
-  // ^ last interval that is either non-overlapping with the previous ones
-  // or is the soonest-ending of an overlapping group
+  std::sort(intervals.begin(), intervals.end(), inc);
+  // [[1,2],[2,3]]
+  // -    ---  ---
+  // ---   -     --
   
-  for (int i=1; i<N; i++) {
-    if (intervals[i][0] < intervals[last][1]) { // overlap
-      toRemove++;
-      // keep last the soonest-ending overlapping interval
-      if (intervals[i][1] < intervals[last][1])
-        last = i;
-    } 
-    else { // no overlap
+  int last = 0;
+  int count = 0;
+  
+  for (int i = 1; i < N; ++i) {
+    if (intervals[last][1] <= intervals[i][0]) {
+      // No overlap.
       last = i;
+    }
+    else {
+      // Overlap. Keep the earlier ending one.
+      last = (intervals[last][1] < intervals[i][1]) ? last : i;
+      ++count;
     }
   }
   
-  return toRemove;
+  return count;
 }
 
 int main() {

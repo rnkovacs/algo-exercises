@@ -1,8 +1,8 @@
 /* Given a linked list, remove the nth node from the end of the list
  * and return its head..
  *
- * Runtime: 4 ms, faster than 86.53% of C++ online submissions.
- * Memory usage: 8.5 MB, less than 86.84% of C++ online submissions.
+ * Runtime: 4 ms, faster than 94.32% of C++ online submissions.
+ * Memory usage: 8.2 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <iostream>
@@ -16,36 +16,34 @@ struct ListNode {
 ListNode* removeNthFromEnd(ListNode* head, int n) {
   if (!head) return nullptr;
   
-  ListNode *i = head;
-  ListNode *ii = head;
-  
-  while (n > 0 && i) {
-    i = i->next;
-    n--;
+  ListNode *tail = head;
+  while (n > 1 && tail) {
+    tail = tail->next;
+    --n;
   }
   
-  // List has fewer elements than n.
-  if (n > 0) return head;
-  
-  // List has exactly n elements.
-  if (!i) {
+  if (!tail->next) {
+    // List has exactly n elements, we remove head.
+    // 1 -> 2 | n = 2
     ListNode *oldHead = head;
-    head = head->next;
+    head = oldHead->next;
     delete oldHead;
     return head;
   }
-
-  // List has more than n elements.
-  while (i->next) {
-    i = i->next;
-    ii = ii->next;
+  
+  // List has more than n elements, we look for the one before the nth.
+  // 1 -> 2 -> 3 | n = 2
+  ListNode *beforeNth = head;
+  tail = tail->next;
+  
+  while (tail->next) {
+    tail = tail->next;
+    beforeNth = beforeNth->next;
   }
   
-  // Now ii is one step before the element to remove.
-  ListNode *toRemove = ii->next;
-  ii->next = toRemove->next;
+  ListNode *toRemove = beforeNth->next;
+  beforeNth->next = toRemove->next;
   delete toRemove;
-  
   return head;
 }
 

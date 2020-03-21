@@ -1,0 +1,35 @@
+/* Given an array with n objects colored red, white or blue, sort them
+ * in-place so that objects of the same color are adjacent, with the colors
+ * in the order red, white and blue.
+ *
+ * Here, we will use the integers 0, 1, and 2 to represent the color red,
+ * white, and blue respectively.
+ *
+ * You are not suppose to use the library's sort function for this problem.
+ *
+ * Runtime: 4 ms, faster than 68.67% of C++ online submissions.
+ * Memory usage: 6.3 MB, less than 100.00% of C++ online submissions.
+ */
+
+#include <iostream>
+#include <vector>
+
+void sortColors(std::vector<int> &nums) {
+  int N = nums.size();
+  int pivot = 1;
+  
+  int to = 0;
+  for (int i = 0; i < N; ++i) {
+    if (nums[i] < pivot) std::swap(nums[i], nums[to++]);
+  }
+  for (int i = to; i < N; ++i) {
+    if (nums[i] == pivot) std::swap(nums[i], nums[to++]);
+  }
+}
+
+int main() {
+  std::vector<int> nums {2,0,2,1,1,0};
+  for (int i: nums) std::cout << i << ' '; std::cout << '\n';
+  sortColors(nums);
+  for (int i: nums) std::cout << i << ' '; std::cout << '\n';
+}

@@ -1,5 +1,8 @@
 /* Given an array of meeting time intervals consisting of start and end times,
  * determine if a person could attend all meetings.
+ *
+ * Runtime: 12 ms, faster than 99.56% of C++ online submissions.
+ * Memory usage: 11.3 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <algorithm>

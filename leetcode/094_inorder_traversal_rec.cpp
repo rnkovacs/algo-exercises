@@ -9,8 +9,8 @@
  *
  * Output: [1, 3, 2]
  *
- * Runtime: 4 ms, faster than 59.10% of C++ online submissions.
- * Memory usage: 9.1 MB, less than 95.00% of C++ online submissions.
+ * Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+ * Memory usage: 6.8 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <iostream>

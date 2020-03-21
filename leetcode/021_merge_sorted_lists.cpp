@@ -1,6 +1,6 @@
 /*
- * Runtime: 12 ms, faster than 12.53% of C++ submissions.
- * Memory usage: 8.9 MB, less than 74.59% of C++ online submissions.
+ * Runtime: 8 ms, faster than 92.97% of C++ submissions.
+ * Memory usage: 8.6 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <iostream>
@@ -20,50 +20,40 @@ void print(std::string name, ListNode *head) {
   std::cout << std::endl;
 }
 
-ListNode *merge(ListNode *l1, ListNode *l2) {
-  ListNode *l3 = nullptr;
-  ListNode *i1 = l1;
-  ListNode *i2 = l2;
-  ListNode *i3 = l3;
-
-  if (l1 && l2) {
-    if (l1->val < l2->val) {
-      l3 = new ListNode(l1->val);
-      i1 = l1->next;
-      i2 = l2;
-    } else {
-      l3 = new ListNode(l2->val);
-      i1 = l1;
-      i2 = l2->next;
-    }
-    i3 = l3;
-  }
-
-  while (i1 && i2) {
-    if (i1->val < i2->val) {
-      i3->next = new ListNode(i1->val);
-      i3 = i3->next;
-      i1 = i1->next;
-    } else {
-      i3->next = new ListNode(i2->val);
-      i3 = i3->next;
-      i2 = i2->next;
-    }
+ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+  if (!l1) return l2;
+  if (!l2) return l1;
+  
+  ListNode *head;
+  if (l1->val < l2->val) {
+    head = l1;
+    l1 = l1->next;
+  } else {
+    head = l2;
+    l2 = l2->next;
   }
   
-  ListNode *i = (i1) ? i1 : i2;
-  while (i) {
-    if (!l3) {
-      l3 = new ListNode(i->val);
-      i3 = l3;
+  ListNode *i = head;
+  while (l1 && l2) {
+    if (l1->val < l2->val) {
+      i->next = l1;
+      l1 = l1->next;
     } else {
-      i3->next = new ListNode(i->val);
-      i3 = i3->next;
+      i->next = l2;
+      l2 = l2->next;
     }
     i = i->next;
   }
-
-  return l3;
+  
+  // One of the lists has ended.
+  ListNode *rest = l1 ? l1 : l2;
+  while (rest) {
+    i->next = rest;
+    rest = rest->next;
+    i = i->next;
+  }
+  
+  return head;
 }
 
 int main() {
@@ -73,7 +63,7 @@ int main() {
   print("1", l1);
   ListNode *l2 = nullptr;
   print("2", l2);
-  ListNode *l3 = merge(l1, l2);
+  ListNode *l3 = mergeTwoLists(l1, l2);
   print("merged", l3);
   std::cout << '\n';
 
@@ -81,7 +71,7 @@ int main() {
   print("1", l1);
   l2 = new ListNode(0);
   print("2", l2);
-  l3 = merge(l1, l2);
+  l3 = mergeTwoLists(l1, l2);
   print("merged", l3);
   std::cout << '\n';
 
@@ -93,6 +83,6 @@ int main() {
   l2->next = new ListNode(3);
   l2->next->next = new ListNode(4);
   print("2", l2);
-  l3 = merge(l1, l2);
+  l3 = mergeTwoLists(l1, l2);
   print("merged", l3);
 }
