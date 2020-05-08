@@ -1,8 +1,8 @@
 /* Given an unsorted array of integers, find the length of the longest
  * increasing subsequence.
  *
- * Runtime: 40 ms, faster than 49.37% of C++ online submissions.
- * Memory usage: 8.7 MB, less than 54.69% of C++ online submissions.
+ * Runtime: 60 ms, faster than 13.00% of C++ online submissions.
+ * Memory usage: 6.5 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <iostream>

@@ -7,8 +7,8 @@
  * E.g.     1
  *        2   3      Output: 6
  *
- * Runtime: 28 ms, faster than 85.26% of C++ online submissions.
- * Memory usage: 24.7 MB, less than 60.61% of C++ online submissions.
+ * Runtime: 28 ms, faster than 83.55% of C++ online submissions.
+ * Memory usage: 22 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <iostream>

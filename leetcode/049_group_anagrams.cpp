@@ -1,7 +1,7 @@
 /* Given an array of strings, group anagrams together.
  *
- * Runtime: 52 ms, faster than 37.47% of C++ online submissions.
- * Memory usage: 21.3 MB, less than 25.37% of C++ online submissions.
+ * Runtime: 64 ms, faster than 24.85% of C++ online submissions.
+ * Memory usage: 16.5 MB, less than 100.00% of C++ online submissions.
  */
 
 #include <algorithm>
@@ -19,17 +19,18 @@ std::vector<StrList> groupAnagrams(StrList &strs) {
   for (int i=0, s=strs.size(); i<s; i++) {
     std::string sorted = strs[i];
     std::sort(sorted.begin(), sorted.end());
-    if (!m.count(sorted)) m.insert({sorted, {i}});
-    else m[sorted].push_back(i);
+    if (!m.count(sorted)) m[sorted] = {i};
+    else                  m[sorted].push_back(i);
   }
 
   std::vector<StrList> v;
-  for (auto pair : m) {
-    StrList sv;
-    for (int idx : pair.second) {
+  StrList sv;
+
+  for (auto &pair : m) {
+    for (int idx : pair.second)
       sv.push_back(strs[idx]);
-    }
     v.push_back(sv);
+    sv.clear();
   }
   
   return v;

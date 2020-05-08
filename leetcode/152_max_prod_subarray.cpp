@@ -16,7 +16,11 @@ int maxProduct(std::vector<int>& nums) {
   int maxProd = nums[0];
   int minProd = maxProd;
   int globMax = maxProd;
-  
+
+  // either nums[i] * maxProd
+  //     or nums[i] * minProd  (if they are neg)
+  //     or nums[i]
+
   for (int i=1; i<N; ++i) {
     int oldMax = maxProd;
     maxProd = std::max(nums[i] * maxProd, std::max(nums[i] * minProd, nums[i]));

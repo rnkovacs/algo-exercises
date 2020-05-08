@@ -1,5 +1,5 @@
-/* Runtime: 1286 ms, faster than 8.44% of C++ online submissions.
- * Memory usage: 258.5 MB, less than 25.00% of C++ online submissions.
+/* Runtime: 1240 ms, faster than 10.39% of C++ online submissions.
+ * Memory usage: 136.7 MB, less than 25.00% of C++ online submissions.
  */
 
 #include <iostream>
@@ -29,11 +29,11 @@ int minAreaRect(std::vector<std::vector<int>> &points) {
       int x2 = points[j][0];
       int y2 = points[j][1];
       
-      if (x1 == x2 || y1 == y2) continue;
-      
-      if (s.find({ x1, y2 }) != s.end() && s.find({ x2, y1 }) != s.end()) {
-        int area = std::abs(x1 - x2) * std::abs(y1 - y2);
-        minArea = std::min(minArea, area);
+      if ((x1 > x2 && y1 > y2) || (x1 < x2 && y1 < y2)) {
+        if (s.find({ x1, y2 }) != s.end() && s.find({ x2, y1 }) != s.end()) {
+          int area = std::abs(x1 - x2) * std::abs(y1 - y2);
+          minArea = std::min(minArea, area);
+        }
       }
     }
   }
